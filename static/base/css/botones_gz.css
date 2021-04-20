@@ -1,0 +1,132 @@
+.btn-golfo {
+  color: #ffffff;
+  background-color: #470700;
+  border-color: #00d96a;
+}
+.btn-golfo:focus,
+.btn-golfo.focus {
+  color: #ffffff;
+  background-color: #230400;
+  border-color: #3A0600;
+}
+.btn-golfo:hover {
+  color: #ffffff;
+  background-color: #230400;
+  border-color: #230400;
+}
+.btn-golfo:active,
+.btn-golfo.active,
+.open > .dropdown-toggle.btn-golfo {
+  color: #ffffff;
+  background-color: #230400;
+  border-color: #860E00;
+}
+.btn-golfo:active:hover,
+.btn-golfo.active:hover,
+.open > .dropdown-toggle.btn-golfo:hover,
+.btn-golfo:active:focus,
+.btn-golfo.active:focus,
+.open > .dropdown-toggle.btn-golfo:focus,
+.btn-golfo:active.focus,
+.btn-golfo.active.focus,
+.open > .dropdown-toggle.btn-golfo.focus {
+  color: #ffffff;
+  background-color: #860E00;
+  border-color: #3A0600;
+}
+.btn-golfo:active,
+.btn-golfo.active,
+.open > .dropdown-toggle.btn-golfo {
+  background-image: none;
+}
+.btn-golfo.disabled,
+.btn-golfo[disabled],
+fieldset[disabled] .btn-golfo,
+.btn-golfo.disabled:hover,
+.btn-golfo[disabled]:hover,
+fieldset[disabled] .btn-golfo:hover,
+.btn-golfo.disabled:focus,
+.btn-golfo[disabled]:focus,
+fieldset[disabled] .btn-golfo:focus,
+.btn-golfo.disabled.focus,
+.btn-golfo[disabled].focus,
+fieldset[disabled] .btn-golfo.focus,
+.btn-golfo.disabled:active,
+.btn-golfo[disabled]:active,
+fieldset[disabled] .btn-golfo:active,
+.btn-golfo.disabled.active,
+.btn-golfo[disabled].active,
+fieldset[disabled] .btn-golfo.active {
+  background-color: #3A0600;
+  border-color: #860E00;
+}
+.btn-golfo .badge {
+  color: #3A0600;
+  background-color: #ffffff;
+}
+.btn-occidente {
+  color: #ffffff;
+  background-color: #014f28;
+  border-color: #00d96a;
+}
+.btn-occidente:focus,
+.btn-occidente.focus {
+  color: #ffffff;
+  background-color: #029B4F;
+  border-color: #029B4F;
+}
+.btn-occidente:hover {
+  color: #ffffff;
+  background-color: #029B4F;
+  border-color: #028142;
+}
+.btn-occidente:active,
+.btn-occidente.active,
+.open > .dropdown-toggle.btn-occidente {
+  color: #ffffff;
+  background-color: #029B4F;
+  border-color: #028142;
+}
+.btn-occidente:active:hover,
+.btn-occidente.active:hover,
+.open > .dropdown-toggle.btn-occidente:hover,
+.btn-occidente:active:focus,
+.btn-occidente.active:focus,
+.open > .dropdown-toggle.btn-occidente:focus,
+.btn-occidente:active.focus,
+.btn-occidente.active.focus,
+.open > .dropdown-toggle.btn-occidente.focus {
+  color: #ffffff;
+  background-color: #028142;
+  border-color: #028142;
+}
+.btn-occidente:active,
+.btn-occidente.active,
+.open > .dropdown-toggle.btn-occidente {
+  background-image: none;
+}
+.btn-occidente.disabled,
+.btn-occidente[disabled],
+fieldset[disabled] .btn-occidente,
+.btn-occidente.disabled:hover,
+.btn-occidente[disabled]:hover,
+fieldset[disabled] .btn-occidente:hover,
+.btn-occidente.disabled:focus,
+.btn-occidente[disabled]:focus,
+fieldset[disabled] .btn-occidente:focus,
+.btn-occidente.disabled.focus,
+.btn-occidente[disabled].focus,
+fieldset[disabled] .btn-occidente.focus,
+.btn-occidente.disabled:active,
+.btn-occidente[disabled]:active,
+fieldset[disabled] .btn-occidente:active,
+.btn-occidente.disabled.active,
+.btn-occidente[disabled].active,
+fieldset[disabled] .btn-occidente.active {
+  background-color: #015C2E;
+  border-color: #029B4F;
+}
+.btn-occidente .badge {
+  color: #014f28;
+  background-color: #ffffff;
+}

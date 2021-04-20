@@ -1,0 +1,287 @@
+{% extends "static/base.html" %}
+{% load static %}
+            {% block content %}
+            <!-- begin style -->
+            <style type="text/css">
+                #firstAreachart {
+                    height: 400px; 
+                }
+                .highcharts-figure, .highcharts-data-table table {
+                    min-width: 310px; 
+                    max-width: 800px;
+                    margin: 1em auto;
+                }
+                .highcharts-data-table table {
+                    font-family: Verdana, sans-serif;
+                    border-collapse: collapse;
+                    border: 1px solid #EBEBEB;
+                    margin: 10px auto;
+                    text-align: center;
+                    width: 100%;
+                    max-width: 500px;
+                }
+                .highcharts-data-table caption {
+                    padding: 1em 0;
+                    font-size: 1.2em;
+                    color: #555;
+                }
+                .highcharts-data-table th {
+                    font-weight: 600;
+                    padding: 0.5em;
+                }
+                .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+                    padding: 0.5em;
+                }
+                .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+                    background: #f8f8f8;
+                }
+                .highcharts-data-table tr:hover {
+                    background: #f1f7ff;
+                }
+
+            </style>
+            <!-- end style -->
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mt-4">
+                        <h1 class="mt-4">Dashboard</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar mr-1"></i>
+                                        Bar chart
+                                    </div>
+                                    <figure class="highcharts-figure">
+                                        <div id="firstAreachart"></div>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar mr-1"></i>
+                                        Bar Chart
+                                    </div>
+                                    <figure class="highcharts-figure">
+                                        <div id="secondAreachart"></div>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-pie mr-1"></i>
+                                        Pie Chart
+                                    </div>
+                                    <figure class="highcharts-figure">
+                                        <div id="firstPiechart"></div>
+                                    </figure>
+                                    <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="{% static 'base/bs4/js/jquery-3.3.1.min.js' %}" crossorigin="anonymous"></script>
+        <script src="{% static 'base/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'base/dist/js/scripts.js' %}"></script>
+        <script src="{% static 'base/highcharts-4.2.3/js/highcharts.js' %}" type="text/javascript"></script>
+        <script src="{% static 'base/highcharts-4.2.3/js/modules/exporting.js' %}" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    </body>
+</html>
+            {% endblock %}
+        <!-- </div> -->
+        {% block footercode %}
+        <script type="text/javascript">
+            let list_data           = JSON.parse(`{{list_data|safe}}`);
+            let list_data_resolved  = JSON.parse(`{{list_data_resolved|safe}}`);
+            let list_data_type      = JSON.parse(`{{list_data_type|safe}}`);
+            // console.log(list_data_resolved);
+            // first chart
+             Highcharts.chart('firstAreachart', {
+                chart: {
+                    type: 'column'
+                },
+                plotOptions: {
+                column: {
+                    colorByPoint: true
+                }
+                },
+                colors: [
+                '#33cc33',
+                '#ff4d4d',
+                '#ff3333',
+                '#ff0000',
+                ],
+                title: {
+                    text: 'Total number of tickets by priority:'
+                },
+                subtitle: {
+                    // text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+                },
+                xAxis: {
+                    type: 'category',
+                    labels: {
+                        rotation: -45,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Tickets(Type)'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: 'number: <b>{point.y:.1f} by type</b>'
+                },
+                series: [{
+                    name: 'Tickets',
+                    data: list_data
+                    ,
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        // format: '{point.y:.1f}', // one decimal
+                        format: '{point.y}', // one decimal
+                        y: 10, // 10 pixels down from the top
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                }]
+            });
+             // second chart
+             Highcharts.chart('secondAreachart', {
+                chart: {
+                    type: 'column'
+                },
+                 plotOptions: {
+                column: {
+                    colorByPoint: true
+                }
+                },
+                colors: [
+                '#33cc33',
+                '#ff4d4d',
+                '#ff3333',
+                '#ff0000',
+                ],
+                title: {
+                    text: 'Total number of resolved tickets:'
+                },
+                subtitle: {
+                    // text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+                },
+                xAxis: {
+                    type: 'category',
+                    labels: {
+                        rotation: -45,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Tickets(Resolved)'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: 'number: <b>{point.y:.1f}</b>'
+                },
+                series: [{
+                    name: 'resolved tickets',
+                    data: list_data_resolved
+                    ,
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        // format: '{point.y:.1f}', // one decimal
+                        format: '{point.y}', // one decimal
+                        y: 10, // 10 pixels down from the top
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                }]
+            });
+             // end second chart
+             // third chart
+             Highcharts.chart('firstPiechart', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'chart by status:'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                accessibility: {
+                    point: {
+                        valueSuffix: '%'
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        size: 90,
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Brands',
+                    colorByPoint: true,
+                    data: list_data_type
+                }]
+            });
+             // end third chart
+
+        </script>
+        {% endblock %}

@@ -1,0 +1,32 @@
+.titulo_boton {
+   
+  
+  
+  width:400px;
+  font-weight:normal;
+}
+.boton_mostrar {
+    border-color: #0E8D89;
+  color:#0E8D89;
+  background: #fff;
+}
+#contenido{
+ 
+  clear:both;
+  border:2px solid #e6e6e6;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top:2px;
+  padding:5px;
+  width:auto;
+  overflow:auto;
+  text-align: justify;
+}
+
+.leyenda>span{ padding:8px; font-size: 11px;}
+
+
+
+
+
+

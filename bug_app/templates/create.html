@@ -1,0 +1,294 @@
+{% extends "static/base.html" %}
+{% load static %}
+            {% block content %}
+            {% include 'static/modals.html' %}
+            <div id="layoutSidenav_content">
+                <main >
+                    <div class="container-fluid">
+                        
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Projects</li>
+                        </ol>
+                        <div class="row">
+                            <div class="col-xl3 col-md-6">
+                                <div class="card-body">
+                                    <button id="create_project" class="btn btn-primary" data-toggle="modal" data-target="#modal_project"> Create new project</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- modal projects -->
+                        <div class="container">
+                            <div class="modal fade" id="modal_project" role="dialog">
+                                <div class="modal-dialog">
+                                  <!-- Modal content-->
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h4 class="modal-title">Data for project</h4>
+                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="{{ProjectsForm.name.id}}">{{ProjectsForm.name.label}}</label>
+                                                    {{ProjectsForm.name }}
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="{{ProjectsForm.id_users.id}}">
+                                                        Select users for project:
+                                                    </label>
+                                                    {{ProjectsForm.id_users }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="btn_submit" type="button" class="btn btn-primary" style="width:30%"> Submit</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end modal projects -->
+
+                        <!-- Data table begin -->
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <div class="titulos_tabla" ></div>
+                                <div class="table-wrapper-scroll-y custom-scrollbar" style='height: 650px'>
+                                    <table id="projects_table" colspan="22" class="table table-sm table-hover text-dark table-striped" style="margin:0px;">
+                                        <thead id="titulo-tablas" style="height: 150px !important; background-color: #52565A; color: #FFFFFF">
+                                            <th class='text-center sticky-header'>#</th>
+                                            <th class='text-center sticky-header'>Name: </th>           
+                                            <th class='text-center sticky-header'>Users: </th>
+                                            <th class='text-center sticky-header'>Edit:</th>
+                                            <th class='text-center sticky-header'>Delete:</th>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div><!-- table-wrapper-scroll-y   -->
+                            </div><!-- /.card-body -->
+                        </div><!-- /.card -->
+                        <!-- Data table end -->
+                        
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>
+        <script src="{% static 'base/bs4/js/jquery-3.3.1.min.js' %}" crossorigin="anonymous"></script>
+        <script src="{% static 'base/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'base/dist/js/scripts.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'base/select-picker/css/select-picker.css' %}" />
+        <script src="{% static 'base/select-picker/js/select-picker.min.js' %}"></script>
+            {% endblock %}
+        <!-- </div> -->
+{% block footercode %}
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            // // 
+            mostrarDatos();
+            // $('#fecha_compra').datetimepicker({
+            //     format:'YYYY-MM-DD',
+            //     icons: {
+            //         time: 'far fa-clock',
+            //     },
+            //     locale:'es',
+            // });
+            //  $('#fecha_expira').datetimepicker({
+            //     format:'YYYY-MM-DD',
+            //     icons: {
+            //         time: 'far fa-clock',
+            //     },
+            //     locale:'es',
+            // });
+             //
+         }); 
+
+        var datatable = $('#projects_table').DataTable({
+            "language":{
+                "decimal":        "",
+                "lengthMenu":     "Mostrar _MENU_ regístros por página",
+                "emptyTable":     "No se encontró ningún regístro",
+                "info":           "Mostrando _START_ al _END_ de un total de _TOTAL_ regístros",
+                "infoEmpty":      "Mostrando 0 al 0 de 0 regístros",
+                "infoFiltered":   "(filtrados de un total de _MAX_ regístros)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "loadingRecords": "Cargando...",
+                "processing":     "Procesando...",
+                "search":         "Busqueda:",
+                "zeroRecords":    "No se han encontrado resultados para estos criterios de busqueda",
+                "paginate": {
+                        "first":      "Primero",
+                        "last":       "Último",
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"
+
+                },
+            },
+            "order":[],
+            "autoWidth":false,
+            "ordering": true,
+            "columnDefs":[
+                {
+                    orderable: true,
+                    targets: "no-sort",
+                    className: 'text-center', targets: [1, 2, 3, 4],
+                },
+            ],
+            "dom": '<"top"Bf>rt<"bottom"lip><"clear">',
+            
+        });
+        $(document).on('click', '#create_project', function(event) {
+            $("#id_name").val("");
+            $("#id_id_users").val("");
+            $('.selectpicker').selectpicker('refresh');
+        });
+
+        $(document).on('click', '.btn_edit', function(event) {
+            $("#create_project").click();
+            var name_project = $(this).attr('name_project');
+            var id_select = $(this).attr('id_users');
+            var id_select = Array.from(id_select);
+            $("#id_name").val(name_project);
+            $('#id_id_users').val(id_select).trigger('change');
+            setTimeout(function(){
+                $('.selectpicker').selectpicker('refresh');
+            }, 1000);
+        });
+        $(document).on('click', '.btn_delete', function(event) {
+            var id_project = $(this).attr('id_project');
+            // delete_project_services
+            $('.loadingGif').modal('show');
+            $.post("{% url 'bug_app:delete_project_services' %}",
+            {
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                id_project:id_project,
+            },
+            function(data,status){
+                if(data.success){
+                    console.log("borrando ando");
+                }
+                cerrarModal('.loadingGif');
+                mostrarDatos();
+            });
+
+        });
+
+        $(document).on('click', '#btn_submit', function(event){
+            
+            var name = $("#id_name").val();
+            var id_users = $("#id_id_users").val();
+
+            if (name !="" && id_users.length !=0) { // begin main if
+                $('.loadingGif').modal('show');
+                $.post("{% url 'bug_app:save_project_services' %}",
+                {
+                    csrfmiddlewaretoken: "{{csrf_token}}",
+                    name:name,
+                    id_users:id_users,
+                },
+                function(data, status){
+                    if(data.success){
+                    // console.log('Si entro al servicio de crear');
+                    }else{
+                        $('.headerModalWarning').html('');
+                        $('.headerModalWarning').html('Advertencia!');
+                        $('.headerModalWarning').css('display','block');
+                        $('#textoModalWarning').empty();
+                        $('#textoModalWarning').append("<b>No se pudo guardar, intente de nuevo</b>");
+                        $('#footerModalWarning').css('display','none');
+                        $('#modalWarning').modal('show');
+                        setTimeout(function(){
+                            $('#modalWarning').modal('hide');
+                        },5000);
+                    }
+                    cerrarModal('.loadingGif');
+                    mostrarDatos();
+                    $("#modal_project").modal('toggle');
+                });
+
+            } //end main if
+        });            
+
+        function mostrarDatos(){
+            // $('.loadingGif').modal('show');
+            var formData = new FormData();
+            formData.append('csrfmiddlewaretoken','{{csrf_token}}');
+            // formData.append('usuario','{{user_id}}');
+            $.ajax({
+                    url:"{% url 'bug_app:show_project_services' %}",
+                    data:formData,
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    type:'POST',
+                    success:function(data){
+                        // console.log('Context mostrar');
+                        // console.log(data);
+                        var archivos_database= data.archivos_database;
+                        var html = '';
+                        var i = 1;
+                        datatable.clear();
+                        for (r in archivos_database){
+                            var name = r;
+                            r = archivos_database[r];
+                            // console.log(r['id_project']);
+                            datatable.row.add(
+                            [
+                                i,
+                                name,
+                                r['users'],
+                                '<button id_project="'+r['id_project']+'" name_project="'+name+'" id_users="'+r['users_data']+'" class="btn_edit btn btn-primary"> <i class="fas fa-edit"></i> </button>',
+                                '<button id_project="'+r['id_project']+'" name_project="'+name+'" id_users="'+r['users_data']+'" class="btn_delete btn btn-primary"> <i class="fas fa-trash-alt"></i> </button>',
+                            ]).draw();
+                            i++;
+                        }
+                            // $('#nombre_tabla > tbody').html(html);
+                            // datatable.draw();
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown){
+                        console.log("XMLHttpRequest:" + XMLHttpRequest)
+                        console.log("textStatus:" + textStatus)
+                        console.log("errorThrown:" + errorThrown)
+                        $('#textoModalError').html('Error al cargar los datos.');
+                        $('#modalError').modal('show');
+                    }
+                }).done(function(){
+                    cerrarModal('.loadingGif');
+                    // $('.loadingGif').modal('hide');
+                });
+            // $('#excel_archivo').val('');
+
+            }
+
+
+    function cerrarModal(modal_str)
+{$(modal_str).modal('hide');$(modal_str).one('shown.bs.modal', function (e) {$(modal_str).modal('hide')})};    
+    </script>
+{% endblock %}

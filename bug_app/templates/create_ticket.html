@@ -1,0 +1,500 @@
+{% extends "static/base.html" %}
+{% load static %}
+            {% block content %}
+            {% include 'static/modals.html' %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4"></h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Tickets</li>
+                        </ol>
+                        <div class="row">
+                                <div class="card-body">
+                                    <button id="create_ticket" class="btn btn-primary" data-toggle="modal" data-target="#modal_project"> Create new Ticket</button>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="card mb-4">
+                                <!-- <div class="card-header">
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="modal fade" id="modal_description" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h4 class="modal-title">Description from ticket</h4>
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-row">
+                                                    <div class="col-md-6 pt-4">
+                                                        <div id="texto-modal-description" class="form-group">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <!-- <button id="btn_submit" type="button" class="btn btn-primary" style="width:30%"> Submit</button> -->
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- modal projects -->
+                        <div class="container">
+                            <div class="modal fade" id="modal_project" role="dialog">
+                                <div class="modal-dialog">
+                                  <!-- Modal content-->
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h4 class="modal-title">Data for project</h4>
+                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input id="id_ticket" type="input" disabled="" name="id_ticket" style="visibility: hidden;">
+                                      <div class="form-row">
+                                            <div class="col-md-6 pt-4">
+                                                <div class="form-group">
+                                                    <label class="" for="{{TicketForm.project_id.id}}">
+                                                        <span class="badge badge-pill badge-primary">
+                                                            <h6>{{TicketForm.project_id.label}}</h6></span></label>
+                                                    {{TicketForm.project_id}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pt-4">
+                                                <div class="form-group">
+                                                    <label class="" for="{{TicketForm.name.id}}">
+                                                        <span class="badge badge-pill badge-primary">
+                                                            <h6>{{TicketForm.name.label}}</h6>
+                                                        </span>
+                                                    </label>
+                                                    {{TicketForm.name}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6 pt-4">
+                                                <div class="form-group">
+                                                    <label class="" for="{{TicketForm.description.id}}">
+                                                    <span class="badge badge-pill badge-primary">
+                                                        <h6>{{TicketForm.description.label}}</h6>
+                                                    </span>
+                                                </label>
+                                                    {{TicketForm.description}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pt-4">
+                                                <div class="form-group">
+                                                    <label class="" for="{{TicketForm.priority.id}}">
+                                                    <span class="badge badge-pill badge-primary">
+                                                        <h6>{{TicketForm.priority.label}}</h6>
+                                                    </span>
+                                                </label>
+                                                    {{TicketForm.priority}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6 pt-4">
+                                                <div class="form-group">
+                                                    <label class="" for="{{TicketForm.status.id}}">
+                                                    <span class="badge badge-pill badge-primary">
+                                                        <h6>{{TicketForm.status.label}}</h6>
+                                                    </span>
+                                                </label>
+                                                    {{TicketForm.status}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pt-4">
+                                                <div class="form-group">
+                                                    <label class="" for="{{TicketForm.typeticket.id}}">
+                                                    <span class="badge badge-pill badge-primary">
+                                                        <h6>{{TicketForm.typeticket.label}}</h6>
+                                                    </span>
+                                                </label>
+                                                    {{TicketForm.typeticket}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6 pt-4">
+                                                <div class="form-group">
+                                                    <label class="" for="{{TicketForm.reporter.id}}">
+                                                    <span class="badge badge-pill badge-primary">
+                                                        <h6>{{TicketForm.reporter.label}}</h6>
+                                                    </span>
+                                                </label>
+                                                    {{TicketForm.reporter}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pt-4">
+                                                <div class="form-group">
+                                                    <label class="" for="{{TicketForm.assignedto.id}}">
+                                                    <span class="badge badge-pill badge-primary">
+                                                        <h6>{{TicketForm.assignedto.label}}</h6>
+                                                    </span>
+                                                </label>
+                                                    {{TicketForm.assignedto}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6 pt-4">
+                                                <div class="form-group">
+                                                    <label class="" for="{{TicketForm.version_reported.id}}">
+                                                    <span class="badge badge-pill badge-primary">
+                                                        <h6>{{TicketForm.version_reported.label}}</h6>
+                                                    </span>
+                                                </label>
+                                                    {{TicketForm.version_reported}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pt-4">
+                                                <div class="form-group">
+                                                    <label class="" for="{{TicketForm.fixed_version.id}}">
+                                                    <span class="badge badge-pill badge-primary">
+                                                        <h6>{{TicketForm.fixed_version.label}}</h6>
+                                                    </span>
+                                                </label>
+                                                    {{TicketForm.fixed_version}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="btn_submit" type="button" class="btn btn-primary" style="width:30%"> Submit</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end modal projects -->
+
+                        <!-- Data table begin -->
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <div class="titulos_tabla" ></div>
+                                <div class="table-wrapper-scroll-y custom-scrollbar" style='height: 650px'>
+                                    <table id="tickets_table" colspan="22" class="table table-sm table-hover text-dark table-striped" style="margin:0px;">
+                                        <thead id="titulo-tablas" style="height: 150px !important; background-color: #52565A; color: #FFFFFF">
+                                            <th class='text-center sticky-header'>#</th>
+                                            <th class='text-center sticky-header'>Ticket's name:</th>
+                                            <th class='text-center sticky-header'>Description:</th>
+                                            <th class='text-center sticky-header'>Priority:</th>
+                                            <th class='text-center sticky-header'>Status:</th>
+                                            <th class='text-center sticky-header'>typeticket:</th>
+                                            <th class='text-center sticky-header'>reporter:</th>
+                                            <th class='text-center sticky-header'>assignedto:</th>
+                                            <th class='text-center sticky-header'>version_reported:</th>
+                                            <th class='text-center sticky-header'>fixed_version:</th>
+                                            <th class='text-center sticky-header'>date_submitted:</th>
+                                            <th class='text-center sticky-header'>Project name: </th>
+                                            <th class='text-center sticky-header'>Edit: </th>
+                                            <th class='text-center sticky-header'>Delete: </th>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div><!-- table-wrapper-scroll-y   -->
+                            </div><!-- /.card-body -->
+                        </div><!-- /.card -->
+                        <!-- Data table end -->
+                        
+                    </div>
+                </main>
+                
+                <!-- <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer> -->
+            </div>
+        </div>
+    </body>
+</html>
+        <script src="{% static 'base/bs4/js/jquery-3.3.1.min.js' %}" crossorigin="anonymous"></script>
+        <script src="{% static 'base/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'base/dist/js/scripts.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'base/select-picker/css/select-picker.css' %}" />
+        <script src="{% static 'base/select-picker/js/select-picker.min.js' %}"></script>
+            {% endblock %}
+        <!-- </div> -->
+{% block footercode %}
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            // // 
+            mostrarDatos();
+            // $('#fecha_compra').datetimepicker({
+            //     format:'YYYY-MM-DD',
+            //     icons: {
+            //         time: 'far fa-clock',
+            //     },
+            //     locale:'es',
+            // });
+            //  $('#fecha_expira').datetimepicker({
+            //     format:'YYYY-MM-DD',
+            //     icons: {
+            //         time: 'far fa-clock',
+            //     },
+            //     locale:'es',
+            // });
+             //
+         }); 
+
+        var datatable = $('#tickets_table').DataTable({
+            "language":{
+                "decimal":        "",
+                "lengthMenu":     "Mostrar _MENU_ regístros por página",
+                "emptyTable":     "No se encontró ningún regístro",
+                "info":           "Mostrando _START_ al _END_ de un total de _TOTAL_ regístros",
+                "infoEmpty":      "Mostrando 0 al 0 de 0 regístros",
+                "infoFiltered":   "(filtrados de un total de _MAX_ regístros)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "loadingRecords": "Cargando...",
+                "processing":     "Procesando...",
+                "search":         "Busqueda:",
+                "zeroRecords":    "No se han encontrado resultados para estos criterios de busqueda",
+                "paginate": {
+                        "first":      "Primero",
+                        "last":       "Último",
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"
+
+                },
+            },
+            "responsive": true,
+            "scroller": true,
+            "scrollX": true,
+            "order":[],
+            "autoWidth":true,
+            "ordering": true,
+            "columnDefs":[
+                {
+                    orderable: true,
+                    targets: "no-sort",
+                    className: 'text-center', targets: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                },
+            ],
+            "dom": '<"top"Bf>rt<"bottom"lip><"clear">',
+            
+        });
+        $(document).on('click', '#create_ticket', function(event) {
+            // var query = datatable.search();
+            // console.log(query);
+            $("#id_ticket").val("");
+            $("#id_project_id").val("");
+            $("#id_description").val("");
+            $("#id_name").val("");
+            $("#id_version_reported").val("");
+            $("#id_reporter").val("");
+            $("#id_assignedto").val("");
+            $("#id_fixed_version").prop('disabled', true);
+            $('.selectpicker').selectpicker('refresh');
+        });
+        $(document).on('click', '.btn_modal', function(event) {
+            var description_ticket          = $(this).attr('description');
+            $('#texto-modal-description').empty();
+            $('#texto-modal-description').append("<b>"+description_ticket+"</b>");
+        });
+        
+
+        $(document).on('click', '.btn_edit', function(event) {
+            $("#create_ticket").click();
+            $("#id_fixed_version").prop('disabled', false);
+            var id_ticket            = $(this).attr('id_ticket');
+            var name_ticket          = $(this).attr('name_ticket');
+            var description          = $(this).attr('description');
+            var id_project           = $(this).attr('id_project');
+            var id_priority          = $(this).attr('id_priority');
+            var id_status            = $(this).attr('id_status');
+            var id_typeticket        = $(this).attr('id_typeticket');
+            var id_reporter          = $(this).attr('id_reporter');
+            var id_assignedto        = $(this).attr('id_assignedto');
+            var id_version_reported  = $(this).attr('id_version_reported');
+            var id_fixed_version     = $(this).attr('id_fixed_version');
+            // convert to array to multiple options first 
+            // var id_project = Array.from(id_project);
+            $("#id_ticket").val(id_ticket);
+            $("#id_name").val(name_ticket);
+            $("#id_description").val(description);
+            $('#id_project_id').val(id_project).trigger('change');
+            $('#id_priority').val(id_priority).trigger('change');
+            $('#id_status').val(id_status).trigger('change');
+            $('#id_typeticket').val(id_typeticket).trigger('change');
+            $('#id_reporter').val(id_reporter).trigger('change');
+            $('#id_assignedto').val(id_assignedto).trigger('change');
+            $('#id_version_reported').val(id_version_reported);
+            $('#id_fixed_version').val(id_fixed_version);
+            setTimeout(function(){
+                $('.selectpicker').selectpicker('refresh');
+            }, 1000);
+        });
+        $(document).on('click', '.btn_delete', function(event) {
+            var id_ticket = $(this).attr('id_ticket');
+            // delete_project_services
+            $('.loadingGif').modal('show');
+            $.post("{% url 'bug_app:delete_ticket_services' %}",
+            {
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                id_ticket:id_ticket,
+            },
+            function(data,status){
+                if(data.success){
+                    // console.log("borrando ando");
+                }
+                cerrarModal('.loadingGif');
+                mostrarDatos();
+            });
+            ////////////////////////
+             // $('.loadingGif').modal('show'); 
+            // $('#excel_archivo').val('');
+            ///////////////////
+
+        });
+
+        $(document).on('click', '#btn_submit', function(event){
+            if ($("#id_ticket").val() != "") {
+                var id_ticket           = $("#id_ticket").val();
+            }
+            
+            var project_id              = $("#id_project_id").val();
+            var name                    = $("#id_name").val();
+            var description             = $("#id_description").val();
+            var id_priority             = $("#id_priority").val();
+            var id_status               = $("#id_status").val();
+            var id_typeticket           = $("#id_typeticket").val();
+            var id_reporter             = $("#id_reporter").val();
+            var id_assignedto           = $("#id_assignedto").val();
+            var id_version_reported     = $("#id_version_reported").val();
+            var id_fixed_version        = $("#id_fixed_version").val();
+
+
+            if (name !="" && project_id.length !=0 && id_reporter.length != 0 && id_assignedto.length != 0) { // begin main if
+                $('.loadingGif').modal('show');
+                $.post("{% url 'bug_app:create_ticket_services' %}",
+                {
+                    csrfmiddlewaretoken: "{{csrf_token}}",
+                    project_id:project_id,
+                    name:name,
+                    description:description,
+                    id_priority:id_priority,
+                    id_status:id_status,
+                    id_typeticket:id_typeticket,
+                    id_reporter:id_reporter,
+                    id_assignedto:id_assignedto,
+                    id_version_reported:id_version_reported,
+                    id_fixed_version:id_fixed_version,
+                },
+                function(data, status){
+                    if(data.success){
+                    // console.log('Si entro al servicio de creart');
+                    }else{
+                        $('.headerModalWarning').html('');
+                        $('.headerModalWarning').html('Advertencia!');
+                        $('.headerModalWarning').css('display','block');
+                        $('#textoModalWarning').empty();
+                        $('#textoModalWarning').append("<b>No se pudo guardar, intente de nuevo</b>");
+                        $('#footerModalWarning').css('display','none');
+                        $('#modalWarning').modal('show');
+                        setTimeout(function(){
+                            $('#modalWarning').modal('hide');
+                        },5000);
+                    }
+                    cerrarModal('.loadingGif');
+                    mostrarDatos();
+                    $("#modal_project").modal('toggle');
+                });
+
+            } //end main if
+        });            
+
+        function mostrarDatos(){
+            // $('.loadingGif').modal('show');
+            var formData = new FormData();
+            formData.append('csrfmiddlewaretoken','{{csrf_token}}');
+            // formData.append('usuario','{{user_id}}');
+            $.ajax({
+                    url:"{% url 'bug_app:show_ticket_services' %}",
+                    data:formData,
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    type:'POST',
+                    success:function(data){
+                        // console.log('Context mostrar');
+                        // console.log(data);
+                        var archivos_database = data.archivos_database;
+                        var html = '';
+                        var i = 1;
+                        datatable.clear();
+                        for (r in archivos_database){
+                            var name = r;
+                            r = archivos_database[r];
+                            // console.log(r);
+                            datatable.row.add(
+                            [
+                                i,
+                                r['name'],
+                                // r['description'],
+                                // <button id="create_ticket" class="btn btn-primary" data-toggle="modal" data-target="#modal_project"> Create new Ticket</button>
+                                '<button data-toggle="modal" data-target="#modal_description" description="'+r['description']+'" class="btn_modal btn btn-primary"> <i class="far fa-comment-alt"></i> </button>',
+                                r['priority'],
+                                r['status'],
+                                r['typeticket'],
+                                r['reporter'],
+                                r['assignedto'],
+                                r['version_reported'],
+                                r['fixed_version'],
+                                r['date_submitted'],
+                                r['project_name'],
+                                '<button id_version_reported="'+r['version_reported']+'" id_ticket="'+r['id_ticket']+'" id_project="'+r['id_project']+'"name_ticket="'+r['name']+'"description="'+r['description']+'" id_priority="'+r['id_priority']+
+                                '" id_status="'+r['id_status']+'" id_typeticket="'+r['id_typeticket']+'" id_reporter="'+r['id_reporter']+
+                                '" id_assignedto="'+r['id_assignedto']+'" class="btn_edit btn btn-primary"> <i class="fas fa-edit"></i> </button>',
+                                '<button id_ticket="'+r['id_ticket']+'" id_project="'+r['id_project']+'"name_ticket="'+r['name']+'"description="'+r['description']+'" id_priority="'+r['id_priority']+
+                                '" id_status="'+r['id_status']+'" id_typeticket="'+r['id_typeticket']+'" id_reporter="'+r['id_reporter']+
+                                '" id_assignedto="'+r['id_assignedto']+'" class="btn_delete btn btn-primary"> <i class="fas fa-trash-alt"></i> </button>',
+                                // '<button id_project="'+r['id_project']+'" name_project="'+name+'" id_users="'+r['users_data']+'" class="btn_delete btn btn-primary"> <i class="fas fa-trash-alt"></i> </button>',
+                            ]).draw();
+                            i++;
+                        }
+                            // $('#nombre_tabla > tbody').html(html);
+                            // datatable.draw();
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown){
+                        console.log("XMLHttpRequest:" + XMLHttpRequest)
+                        console.log("textStatus:" + textStatus)
+                        console.log("errorThrown:" + errorThrown)
+                        $('#textoModalError').html('Error al cargar los datos.');
+                        $('#modalError').modal('show');
+                    }
+                }).done(function(){
+                    cerrarModal('.loadingGif');
+                    // $('.loadingGif').modal('hide');
+                });
+            // $('#excel_archivo').val('');
+
+        }
+
+
+
+    function cerrarModal(modal_str)
+{$(modal_str).modal('hide');$(modal_str).one('shown.bs.modal', function (e) {$(modal_str).modal('hide')})};    
+    </script>
+{% endblock %}

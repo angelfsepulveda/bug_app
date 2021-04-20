@@ -1,0 +1,157 @@
+{% include 'static/modals.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Register - SB Admin</title>
+        <link href="{% static 'base/dist/css/styles.css' %}" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 mt-4">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                    <label class="small mb-1" for="{{UsersForm.first_name.id}}">{{UsersForm.first_name.label}}</label>
+                                                        {{UsersForm.first_name }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="{{UsersForm.last_name.id}}">{{UsersForm.last_name.label}}</label>
+                                                        {{UsersForm.last_name }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class ="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="{{UsersForm.email.id}}">{{UsersForm.email.label}}</label>
+                                                        {{UsersForm.email }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="{{UsersForm.password.id}}">{{UsersForm.password.label}}</label>
+                                                             {{UsersForm.password }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputConfirmPassword">Confirm Password</label>
+                                                        <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="id_role">Selecciona un rol</label>
+                                                            {{UsersForm.role}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mt-4 mb-0 btn btn-primary btn-block" id = "btn_guardar">Create account </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <div class="small"><a href="{% url 'bug_app:login' %}">Have an account? Go to login</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div id="layoutAuthentication_footer">
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="{% static 'base/bs4/js/jquery-3.3.1.min.js' %}" crossorigin="anonymous"></script>
+        <script src="{% static 'base/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'base/dist/js/scripts.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'base/select-picker/css/select-picker.css' %}" />
+        <script src="{% static 'base/select-picker/js/select-picker.min.js' %}"></script>
+
+    </body>
+</html>
+<script type="text/javascript">
+    
+    $(document).on('click', '#btn_guardar', function(event){
+        password                = $("#id_password").val();    
+        first_name              = $("#id_first_name").val();
+        last_name               = $("#id_last_name").val();
+        email                   = $("#id_email").val();
+        confirm_password        = $("#inputConfirmPassword").val();
+        rol                     = $("#id_role").val();
+        if (password !="" && password == confirm_password && confirm_password!="") {
+            $('.loadingGif').modal('show');
+            $.post("{% url 'bug_app:register_services' %}",
+            {
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                password:password,
+                first_name:first_name,
+                last_name:last_name,
+                email:email,
+                rol:rol,
+            },
+            function(data, status){
+                if(data.success){
+                console.log('Si entro al servicio');
+                    
+                    }else{
+                        $('.headerModalWarning').html('');
+                        $('.headerModalWarning').html('Advertencia!');
+                        $('.headerModalWarning').css('display','block');
+                        $('#textoModalWarning').empty();
+                        $('#textoModalWarning').append("<b>No se pudo registrar el usuario consulte con el administrador</b>");
+                        $('#footerModalWarning').css('display','none');
+                        $('#modalWarning').modal('show');
+                        setTimeout(function(){
+                            $('#modalWarning').modal('hide');
+                        },5000);
+                    }
+                    cerrarModal('.loadingGif');
+                });
+        }else{
+            $('.headerModalWarning').html('');
+            $('.headerModalWarning').html('Advertencia!');
+            $('.headerModalWarning').css('display','block');
+            $('#textoModalWarning').empty();
+            $('#textoModalWarning').append("<b>La contrase;a no coincide o esta en blanco</b>");
+            $('#footerModalWarning').css('display','none');
+            $('#modalWarning').modal('show');
+            setTimeout(function(){
+                $('#modalWarning').modal('hide');
+            },5000);
+            }
+
+    });
+    function cerrarModal(modal_str)
+{$(modal_str).modal('hide');$(modal_str).one('shown.bs.modal', function (e) {$(modal_str).modal('hide')})};
+</script>

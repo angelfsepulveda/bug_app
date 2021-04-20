@@ -1,0 +1,133 @@
+{% load static %}
+<!-- ===================== -->
+<!-- ===* Modal Error *=== -->
+<!-- ===================== -->
+<div class="modal fade" id="modalError">
+  <div class="modal-dialog modal-sm">
+    <div id="modal-error-dialog" class="modal-content">
+      <div class="modal-header headerModalError" style="display:none;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-danger" aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-danger" id="headerModalError"></h4>
+      </div><!-- /.modal-header -->
+      <div class="modal-body text-center">
+        <span id="textoModalError" class="text-danger"></span>
+      </div><!-- /.modal-body -->
+      <div class="modal-footer" id="footerModalError" style="display:none;"></div><!-- /.modal-footer -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ===================== -->
+<!-- ===* Loading GIF *=== -->
+<!-- ===================== -->
+<div class="modal fade loadingGif" data-keyboard="false" data-backdrop="static" style="top:50%; z-index: 1501 !important;">
+  <div class="modal-dialog">
+    <div class="text-center" style="color:#fff;">
+      <i class="fa fa-spinner fa-pulse"></i> Cargando...
+    </div><!-- /.loadingGif -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ======================= -->
+<!-- ===* Modal Cliente *=== -->
+<!-- ======================= -->
+<div class="modal fade" id="modalCliente">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header titleModalCliente">
+        <div class="modal-title" id="titleModalCliente"></div><!-- /.modal-title -->
+      </div><!-- /.modal-header -->
+      <div class="modal-body" id="bodyModalCliente"></div><!-- /.modal-body -->
+      <div class="modal-footer" id="footerModalCliente"></div><!-- /.modal-footer -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ======================= -->
+<!-- ===* Modal Success *=== -->
+<!-- ======================= -->
+<div class="modal fade" id="modalSuccess">
+  <div class="modal-dialog modal-sm">
+    <div id="modal-success-dialog" class="modal-content">
+      <div class="modal-header headerModalSuccess" style="display:none;">
+        <h4 class="modal-title text-success" id="headerModalSuccess"></h4>
+      </div><!-- /.modal-header -->
+      <div class="modal-body">
+        <span class="text-success" id="textoModalSuccess"></span>
+      </div><!-- /.modal-body -->
+      <div class="modal-footer" id="footerModalSuccess" style="display:none;"></div><!-- /.modal-footer -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ======================== -->
+<!-- ===* Modal Mensajes *=== -->
+<!-- ======================== -->
+<div class="modal fade" id="modal-chat">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <span id="modal-chat-title"></span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div><!-- /.modal-header -->
+      <div id="modal-chat-body" class="modal-body" userActive="">
+      </div><!-- /.modal-body -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ======================= -->
+<!-- ===* Modal Warning *=== -->
+<!-- ======================= -->
+<div class="modal fade" id="modalWarning">
+  <div class="modal-dialog modal-sm">
+    <div id="modal-warning-dialog" class="modal-content">
+      <div class="modal-header headerModalWarning" style="display:none;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-muted" aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-warning" id="headerModalWarning"></h4>
+      </div><!-- /.modal-header -->
+      <div class="modal-body">
+        <span id="textoModalWarning"></span>
+      </div><!-- /.modal-body -->
+      <div class="modal-footer" id="footerModalWarning" style="display:none;"></div><!-- /.modal-footer -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ======================= -->
+<!-- ===* Modal Tabla de Clientes *=== -->
+<!-- ======================= -->
+<div class="modal fade" id="modalFlexible" style="margin: 20px;">
+  <div class="modal-dialog " style="min-width: 95%;">
+    <div class="modal-content">
+      <div><button id="btn-close-modal" class="btn btn-danger" style="float: right;"><i class="fa fa-close"></i></button></div>
+      <div class="modal-header titleModalFlexible">
+        <div class="modal-title" id="titleModalFlexible"></div><!-- /.modal-title -->
+      </div><!-- /.modal-header -->
+      <div class="modal-body" id="bodyModalFlexible"></div><!-- /.modal-body -->
+      <div class="modal-footer" id="footerModalFlexible"></div><!-- /.modal-footer -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ===* Modal Evidencias *=== -->
+<!-- ======================= -->
+<div class="modal fade" id="modalEvidencias" style="margin: 5px;">
+  <div class="modal-dialog " style="min-width: 100%;">
+    <div class="modal-content">
+      <!--div><button id="btn-close-modal" class="btn btn-danger" style="float: right; margin: 5px;"><i class="fa fa-close"></i></button></div-->
+      <div class="modal-header titleModalEvidencias">
+        <div class="modal-title" id="titleModalEvidencias"><h3><strong>Evidencia</strong></h3></div><!-- /.modal-title -->
+      </div><!-- /.modal-header -->
+      <div class="cropper-contenedor-sub" id="bodyModalEvidencias" style="padding-top: 10px; padding-bottom: none;"></div><!-- /.modal-body -->
+      <div class="modal-footer" id="footerModalEvidencias">
+        <button id="btn-close-modal" class="btn btn-success" style="float: right;"><i class="fa fa-save"></i>&nbsp;&nbsp; Aceptar</button>
+      </div><!-- /.modal-footer -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript" src="{% static 'base/bs4/js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(document).on('click','#btn-close-modal',function(event){
+      $('#modalFlexible').modal('hide');
+      $('#modalEvidencias').modal('hide');
+    });
+    $(document).on('click','#btn-aceptar-modal',function(event){
+      $('#modalEvidencias').modal('hide');
+    });
+  });
+</script>

@@ -1,0 +1,13 @@
+#
+
+*.zip
+*.tar
+*.tgz
+*.log
+*.pyc
+*.swp
+*.apk
+*.sql
+*/migrations/*
+/tmp/*
+.DS_Store
