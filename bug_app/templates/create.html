@@ -5,10 +5,6 @@
             <div id="layoutSidenav_content">
                 <main >
                     <div class="container-fluid">
-                        
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Projects</li>
-                        </ol>
                         <div class="row">
                             <div class="col-xl3 col-md-6">
                                 <div class="card-body">
@@ -96,6 +92,7 @@
         </div>
     </body>
 </html>
+
         <script src="{% static 'base/bs4/js/jquery-3.3.1.min.js' %}" crossorigin="anonymous"></script>
         <script src="{% static 'base/js/bootstrap.bundle.min.js' %}"></script>
         <script src="{% static 'base/dist/js/scripts.js' %}"></script>
@@ -201,6 +198,7 @@
         });
 
         $(document).on('click', '#btn_submit', function(event){
+
             
             var name = $("#id_name").val();
             var id_users = $("#id_id_users").val();
@@ -258,7 +256,6 @@
                         for (r in archivos_database){
                             var name = r;
                             r = archivos_database[r];
-                            // console.log(r['id_project']);
                             datatable.row.add(
                             [
                                 i,

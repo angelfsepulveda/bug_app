@@ -4,11 +4,9 @@
             {% include 'static/modals.html' %}
             <div id="layoutSidenav_content">
                 <main>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
                     <div class="container-fluid">
-                        <h1 class="mt-4"></h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Tickets</li>
-                        </ol>
+                        <h1 class="mt-4"></h1>                        
                         <div class="row">
                                 <div class="card-body">
                                     <button id="create_ticket" class="btn btn-primary" data-toggle="modal" data-target="#modal_project"> Create new Ticket</button>
@@ -183,17 +181,17 @@
                                     <table id="tickets_table" colspan="22" class="table table-sm table-hover text-dark table-striped" style="margin:0px;">
                                         <thead id="titulo-tablas" style="height: 150px !important; background-color: #52565A; color: #FFFFFF">
                                             <th class='text-center sticky-header'>#</th>
-                                            <th class='text-center sticky-header'>Ticket's name:</th>
+                                            <th class='text-center sticky-header'>Name:</th>
                                             <th class='text-center sticky-header'>Description:</th>
                                             <th class='text-center sticky-header'>Priority:</th>
                                             <th class='text-center sticky-header'>Status:</th>
                                             <th class='text-center sticky-header'>typeticket:</th>
                                             <th class='text-center sticky-header'>reporter:</th>
-                                            <th class='text-center sticky-header'>assignedto:</th>
+                                            <th class='text-center sticky-header'>assigned:</th>
                                             <th class='text-center sticky-header'>version_reported:</th>
                                             <th class='text-center sticky-header'>fixed_version:</th>
                                             <th class='text-center sticky-header'>date_submitted:</th>
-                                            <th class='text-center sticky-header'>Project name: </th>
+                                            <th class='text-center sticky-header'>Project: </th>
                                             <th class='text-center sticky-header'>Edit: </th>
                                             <th class='text-center sticky-header'>Delete: </th>
                                         </thead>
@@ -207,19 +205,6 @@
                         
                     </div>
                 </main>
-                
-                <!-- <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer> -->
             </div>
         </div>
     </body>
@@ -281,7 +266,8 @@
             },
             "responsive": true,
             "scroller": true,
-            "scrollX": true,
+            // "scrollY": true,
+            // "scrollX": true,
             "order":[],
             "autoWidth":true,
             "ordering": true,
@@ -444,16 +430,12 @@
                         var html = '';
                         var i = 1;
                         datatable.clear();
-                        for (r in archivos_database){
-                            var name = r;
+                        for (r in archivos_database){                            
                             r = archivos_database[r];
-                            // console.log(r);
                             datatable.row.add(
                             [
                                 i,
                                 r['name'],
-                                // r['description'],
-                                // <button id="create_ticket" class="btn btn-primary" data-toggle="modal" data-target="#modal_project"> Create new Ticket</button>
                                 '<button data-toggle="modal" data-target="#modal_description" description="'+r['description']+'" class="btn_modal btn btn-primary"> <i class="far fa-comment-alt"></i> </button>',
                                 r['priority'],
                                 r['status'],
@@ -470,7 +452,7 @@
                                 '<button id_ticket="'+r['id_ticket']+'" id_project="'+r['id_project']+'"name_ticket="'+r['name']+'"description="'+r['description']+'" id_priority="'+r['id_priority']+
                                 '" id_status="'+r['id_status']+'" id_typeticket="'+r['id_typeticket']+'" id_reporter="'+r['id_reporter']+
                                 '" id_assignedto="'+r['id_assignedto']+'" class="btn_delete btn btn-primary"> <i class="fas fa-trash-alt"></i> </button>',
-                                // '<button id_project="'+r['id_project']+'" name_project="'+name+'" id_users="'+r['users_data']+'" class="btn_delete btn btn-primary"> <i class="fas fa-trash-alt"></i> </button>',
+                                
                             ]).draw();
                             i++;
                         }
