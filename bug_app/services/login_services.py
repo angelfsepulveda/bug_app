@@ -13,20 +13,20 @@ logger = logging.getLogger(__name__)
 
 def login_services(request):
     context = {}
-    logger.debug('**********************************************************************')
-    logger.debug('**********************************************************************')
-    logger.debug('**********************************************************************')
-    logger.debug('**********************************************************************')
+    success = None    
+    logger.debug('***********************')
     logger.debug("bug_app_login_services")
     logger.debug(request.POST)
     password    = request.POST['password']
     email       = request.POST['email']
     logout(request)
     users = User.objects.get(email=email).username
+    logger.debug("users: ")
     logger.debug(users)
-    user = authenticate(username=users,password=password)
+    user = authenticate(username=users,password=password)    
     if user is not None:
         if user.is_active:
+            logger.debug("user is active")
             login_user(request, user)
             request.session['user_id']    = user.pk
             request.session['username']   = user.username
@@ -36,10 +36,10 @@ def login_services(request):
             ####
             success = True
         else:
-            messages = 'Tu cuenta no está activa. Contacta al administrador.'
+            messages = 'This account is disabled, contact the admin'
             context['messages'] = messages
     else:
-        messages = 'Usuario o contraseña incorrecta.'
+        messages = 'User or password incorrect.'
         context['messages'] = messages
     context['success'] = success
     
